@@ -24,19 +24,45 @@ $options = array(
 $wsdl = $configurations['url'];
 $wsdl = null;
 
+$username = $configurations['login'];
+$password = $configurations['password'];
 
-$nameSpace = 'DynamicsGP';
-$nameSpace = 'ns2';
-$headerData = array(
-    'UsernameToken' => array(
-        'Username' => $configurations['login'],
-        'Password' =>  $configurations['password']
-    )
-);
-$header = new SOAPHeader($nameSpace, 'Security', $headerData, true);
+$strWSSENS = "http://schemas.xmlsoap.org/ws/2002/07/secext";
+
+$objSoapVarUser = new SoapVar($username, XSD_STRING, NULL, $strWSSENS, NULL, $strWSSENS);
+$objSoapVarPass = new SoapVar($password, XSD_STRING, NULL, $strWSSENS, NULL, $strWSSENS);
+
+class clsWSSEAuth {
+    private $Username;
+    private $Password;
+    function __construct($username, $password) {
+        $this->Username=$username;
+        $this->Password=$password;
+    }
+}
+class clsWSSEToken {
+    private $UsernameToken;
+    function __construct ($innerVal){
+        $this->UsernameToken = $innerVal;
+    }
+}
+$objWSSEAuth = new clsWSSEAuth($objSoapVarUser, $objSoapVarPass);
+
+$objSoapVarWSSEAuth = new SoapVar($objWSSEAuth, SOAP_ENC_OBJECT, NULL, $strWSSENS, 'UsernameToken', $strWSSENS);
+$objWSSEToken = new clsWSSEToken($objSoapVarWSSEAuth);
+$objSoapVarWSSEToken = new SoapVar($objWSSEToken, SOAP_ENC_OBJECT, NULL, $strWSSENS, 'UsernameToken', $strWSSENS);
+$objSoapVarHeaderVal=new SoapVar($objSoapVarWSSEToken, SOAP_ENC_OBJECT, NULL, $strWSSENS, 'Security', $strWSSENS);
+$objSoapVarWSSEHeader = new SoapHeader($strWSSENS, 'Security', $objSoapVarHeaderVal,true);
+//$headerData = array(
+//    'UsernameToken' => array(
+//        'Username' => $configurations['login'],
+//        'Password' =>  $configurations['password']
+//    )
+//);
+//$header = new SOAPHeader($nameSpace, 'Security', $headerData, true);
 
 $service = new \DynamicsGP($options, $wsdl);
-$service->__setSoapHeaders($header);
+$service->__setSoapHeaders($objSoapVarWSSEHeader);
 
 try{
     $context = new \Context();

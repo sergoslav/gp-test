@@ -1,14 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergoslav
- * Date: 17.06.16
- * Time: 16:39
- */
 
+require 'config.php';
 require 'DynamicsGP/autoload.php';
 
-$service = new \DynamicsGP();
+
+$options = array(
+    'login'         => $configurations['login'],
+    'password'      => $configurations['password']
+);
+
+$wsdl = $configurations['url'];
+
+$service = new \DynamicsGP($options, $wsdl);
 
 $companyList = new \GetCompanyList();
 

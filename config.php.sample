@@ -1,0 +1,7 @@
+<?php
+
+$configurations = array(
+    'url'       => '',
+    'login'     => '',
+    'password'  => '',
+);

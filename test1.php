@@ -22,9 +22,11 @@ $options = array(
 );
 
 $wsdl = $configurations['url'];
+$wsdl = null;
 
 
 $nameSpace = 'DynamicsGP';
+$nameSpace = 'ns2';
 $headerData = array(
     'UsernameToken' => array(
         'Username' => $configurations['login'],
@@ -36,11 +38,9 @@ $header = new SOAPHeader($nameSpace, 'Security', $headerData, true);
 $service = new \DynamicsGP($options, $wsdl);
 $service->__setSoapHeaders($header);
 
-$context = new \Context();
-
-
-
 try{
+    $context = new \Context();
+
 //    $companyKey = new \CompanyKey();
 //    $companyKey->setId(2);
 //

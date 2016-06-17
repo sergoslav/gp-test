@@ -1,0 +1,142 @@
+<?php
+
+class ArrayOfChangedInternetAddressKey implements \ArrayAccess, \Iterator, \Countable
+{
+
+    /**
+     * @var ChangedInternetAddressKey[] $ChangedInternetAddressKey
+     */
+    protected $ChangedInternetAddressKey = null;
+
+    
+    public function __construct()
+    {
+    
+    }
+
+    /**
+     * @return ChangedInternetAddressKey[]
+     */
+    public function getChangedInternetAddressKey()
+    {
+      return $this->ChangedInternetAddressKey;
+    }
+
+    /**
+     * @param ChangedInternetAddressKey[] $ChangedInternetAddressKey
+     * @return ArrayOfChangedInternetAddressKey
+     */
+    public function setChangedInternetAddressKey(array $ChangedInternetAddressKey = null)
+    {
+      $this->ChangedInternetAddressKey = $ChangedInternetAddressKey;
+      return $this;
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset An offset to check for
+     * @return boolean true on success or false on failure
+     */
+    public function offsetExists($offset)
+    {
+      return isset($this->ChangedInternetAddressKey[$offset]);
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to retrieve
+     * @return ChangedInternetAddressKey
+     */
+    public function offsetGet($offset)
+    {
+      return $this->ChangedInternetAddressKey[$offset];
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to assign the value to
+     * @param ChangedInternetAddressKey $value The value to set
+     * @return void
+     */
+    public function offsetSet($offset, $value)
+    {
+      $this->ChangedInternetAddressKey[$offset] = $value;
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to unset
+     * @return void
+     */
+    public function offsetUnset($offset)
+    {
+      unset($this->ChangedInternetAddressKey[$offset]);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return ChangedInternetAddressKey Return the current element
+     */
+    public function current()
+    {
+      return current($this->ChangedInternetAddressKey);
+    }
+
+    /**
+     * Iterator implementation
+     * Move forward to next element
+     *
+     * @return void
+     */
+    public function next()
+    {
+      next($this->ChangedInternetAddressKey);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return string|null Return the key of the current element or null
+     */
+    public function key()
+    {
+      return key($this->ChangedInternetAddressKey);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return boolean Return the validity of the current position
+     */
+    public function valid()
+    {
+      return $this->key() !== null;
+    }
+
+    /**
+     * Iterator implementation
+     * Rewind the Iterator to the first element
+     *
+     * @return void
+     */
+    public function rewind()
+    {
+      reset($this->ChangedInternetAddressKey);
+    }
+
+    /**
+     * Countable implementation
+     *
+     * @return ChangedInternetAddressKey Return count of elements
+     */
+    public function count()
+    {
+      return count($this->ChangedInternetAddressKey);
+    }
+
+}

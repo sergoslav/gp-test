@@ -1,0 +1,142 @@
+<?php
+
+class ArrayOfInventoryBin implements \ArrayAccess, \Iterator, \Countable
+{
+
+    /**
+     * @var InventoryBin[] $InventoryBin
+     */
+    protected $InventoryBin = null;
+
+    
+    public function __construct()
+    {
+    
+    }
+
+    /**
+     * @return InventoryBin[]
+     */
+    public function getInventoryBin()
+    {
+      return $this->InventoryBin;
+    }
+
+    /**
+     * @param InventoryBin[] $InventoryBin
+     * @return ArrayOfInventoryBin
+     */
+    public function setInventoryBin(array $InventoryBin = null)
+    {
+      $this->InventoryBin = $InventoryBin;
+      return $this;
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset An offset to check for
+     * @return boolean true on success or false on failure
+     */
+    public function offsetExists($offset)
+    {
+      return isset($this->InventoryBin[$offset]);
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to retrieve
+     * @return InventoryBin
+     */
+    public function offsetGet($offset)
+    {
+      return $this->InventoryBin[$offset];
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to assign the value to
+     * @param InventoryBin $value The value to set
+     * @return void
+     */
+    public function offsetSet($offset, $value)
+    {
+      $this->InventoryBin[$offset] = $value;
+    }
+
+    /**
+     * ArrayAccess implementation
+     *
+     * @param mixed $offset The offset to unset
+     * @return void
+     */
+    public function offsetUnset($offset)
+    {
+      unset($this->InventoryBin[$offset]);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return InventoryBin Return the current element
+     */
+    public function current()
+    {
+      return current($this->InventoryBin);
+    }
+
+    /**
+     * Iterator implementation
+     * Move forward to next element
+     *
+     * @return void
+     */
+    public function next()
+    {
+      next($this->InventoryBin);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return string|null Return the key of the current element or null
+     */
+    public function key()
+    {
+      return key($this->InventoryBin);
+    }
+
+    /**
+     * Iterator implementation
+     *
+     * @return boolean Return the validity of the current position
+     */
+    public function valid()
+    {
+      return $this->key() !== null;
+    }
+
+    /**
+     * Iterator implementation
+     * Rewind the Iterator to the first element
+     *
+     * @return void
+     */
+    public function rewind()
+    {
+      reset($this->InventoryBin);
+    }
+
+    /**
+     * Countable implementation
+     *
+     * @return InventoryBin Return count of elements
+     */
+    public function count()
+    {
+      return count($this->InventoryBin);
+    }
+
+}

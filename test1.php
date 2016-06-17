@@ -39,5 +39,10 @@ try{
     echo "go exseption\n";
     var_dump($e->getMessage());
     print_r($e->getTrace());
+
+    var_dump($service->__getLastRequest());
+    var_dump($service->__getLastResponse());
+    var_dump($service->__getLastResponseHeaders());
+
 }
 

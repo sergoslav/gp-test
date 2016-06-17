@@ -27,13 +27,19 @@ $service = new \DynamicsGP($options, $wsdl);
 
 $context = new \Context();
 
-$companyKey = new \CompanyKey();
-$companyKey->setId(2);
 
-$getCompanyKeys = new \GetCompanyByKey($companyKey, $context);
 
 try{
-    $service->GetCompanyByKey($getCompanyKeys);
+//    $companyKey = new \CompanyKey();
+//    $companyKey->setId(2);
+//
+//    $getCompanyKeys = new \GetCompanyByKey($companyKey, $context);
+//    $service->GetCompanyByKey($getCompanyKeys);
+
+    $CustomerCriteria = new \CustomerCriteria();
+
+    $GetCustomerList = new \GetCustomerList($CustomerCriteria, $context);
+    $service->GetCustomerList($GetCustomerList);
 } catch (Exception $e) {
 
     echo "go exseption\n";

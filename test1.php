@@ -16,9 +16,9 @@ $options = array(
     'encoding'      => 'UTF-8',
     'cache_wsdl'    => WSDL_CACHE_NONE,
 
-//    'proxy_host'     => "24.52.105.174",
-//    'proxy_login'    => $configurations['login'],
-//    'proxy_password' => $configurations['password']
+    'proxy_host'     => "24.52.105.174",
+    'proxy_login'    => $configurations['login'],
+    'proxy_password' => $configurations['password']
 );
 
 $wsdl = $configurations['url'];

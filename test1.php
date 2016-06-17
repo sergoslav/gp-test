@@ -7,15 +7,23 @@ require 'DynamicsGP/autoload.php';
 $options = array(
     'login'         => $configurations['login'],
     'password'      => $configurations['password'],
-    'wsdl'          => $configurations['url']
+//    'wsdl'          => $configurations['url'],
+    'soap_version'  => SOAP_1_2,
+    'trace'         => 1,
+    'exceptions'    => 1,
+    'connection_timeout'    => 180,
+    'encoding'      => 'UTF-8',
+    'cache_wsdl'    => WSDL_CACHE_NONE,
 );
 
 $wsdl = $configurations['url'];
 
 $service = new \DynamicsGP($options, $wsdl);
 
-$criteria = new \CompanyCriteria();
 $context = new \Context();
-$companyList = new \GetCompanyList($criteria,$context);
 
-$service->GetCompanyList($companyList);
+$companyKey = new \CompanyKey();
+$companyKey->setId(2);
+
+$getCompanyKeys = new \GetCompanyByKey($companyKey, $context);
+$service->GetCompanyByKey($getCompanyKeys);

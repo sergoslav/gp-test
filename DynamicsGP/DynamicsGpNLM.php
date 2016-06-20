@@ -1,6 +1,8 @@
 <?php
 
-class DynamicsGP extends \SoapClient
+require_once "NTLM_SoapClient.php";
+
+class DynamicsGpNLM extends NTLM_SoapClient
 {
 
     /**

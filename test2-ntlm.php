@@ -17,9 +17,9 @@ $options = array(
     'encoding'      => 'UTF-8',
     'cache_wsdl'    => WSDL_CACHE_NONE,
 
-//    'proxy_host'     => "24.52.105.174",
-//    'proxy_login'    => $configurations['login'],
-//    'proxy_password' => $configurations['password']
+    'proxy_host'     => "24.52.105.174",
+    'proxy_login'    => $configurations['login'],
+    'proxy_password' => $configurations['password']
 );
 
 $wsdl = $configurations['url'];
@@ -28,7 +28,7 @@ $wsdl = null;
 //Auth Header for SOAP
 require_once "src/AuthHeader.php";
 
-$service = new \DynamicsGP($options, $wsdl);
+$service = new \DynamicsGpNLM($options, $wsdl);
 $service->__setSoapHeaders($objSoapVarWSSEHeader);
 
 try{

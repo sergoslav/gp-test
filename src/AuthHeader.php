@@ -1,6 +1,7 @@
 <?php
 
-require '../config.php';
+
+require 'config.php';
 
 $username = $configurations['login'];
 $password = $configurations['password'];

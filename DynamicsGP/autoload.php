@@ -5,6 +5,7 @@
 {
     $classes = array(
         'DynamicsGP' => __DIR__ .'/DynamicsGP.php',
+        'DynamicsGpNLM' => __DIR__ .'/DynamicsGpNLM.php',
         'GetChangedCurrencyKeyList' => __DIR__ .'/GetChangedCurrencyKeyList.php',
         'GetChangedCurrencyKeyListResponse' => __DIR__ .'/GetChangedCurrencyKeyListResponse.php',
         'GetChangedInternetAddressKeyList' => __DIR__ .'/GetChangedInternetAddressKeyList.php',
